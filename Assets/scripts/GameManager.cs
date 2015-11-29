@@ -12,12 +12,6 @@ public class GameManager : MonoBehaviour {
 	void Start() {
 		Input.multiTouchEnabled = true;
 		ResetValues ();
-
-		GameObject colorController = GameObject.FindGameObjectWithTag ("ColorController");
-		colorController.GetComponent<ColorControllerUI> ().enabled = true;
-
-		GameObject shootController = GameObject.FindGameObjectWithTag ("ShootBtn");
-		shootController.GetComponent<ShootControllerUI> ().enabled = true;
 	}
  
 	public static void ResetValues() {

@@ -23,6 +23,8 @@ public class ShootControllerUI : MonoBehaviour {
 
 		rectCorners = new Vector3[4];
 		shootingImg.GetComponent<RectTransform> ().GetWorldCorners (rectCorners);
+
+		GetComponent<ShootControllerUI> ().enabled = true;
 	}
 
 	void Update () {

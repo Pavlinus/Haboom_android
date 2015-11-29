@@ -31,6 +31,10 @@ public class ColorControllerUI : MonoBehaviour {
 		
 		rectCorners = new Vector3[4];
 		frameImage.GetComponent<RectTransform> ().GetWorldCorners (rectCorners);
+
+		GetComponent<ColorControllerUI> ().enabled = true;
+
+		curColorIndex = 0;
 	}
 	
 	void Update () {

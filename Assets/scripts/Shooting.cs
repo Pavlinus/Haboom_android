@@ -4,19 +4,31 @@ using System.Collections;
 public class Shooting : MonoBehaviour {
 	
 	public ParticleSystem[] shootParticles;
-	GameObject colorControllerObj;
 	ColorControllerUI colorController;
+	GameObject bulletSource;
 
 	void Start () {
-		colorControllerObj = GameObject.FindGameObjectWithTag ("ColorController");
+		GameObject colorControllerObj = GameObject.
+			FindGameObjectWithTag ("ColorController");
+
+		bulletSource = GameObject.
+			FindGameObjectWithTag ("BulletSource");
+
 		colorController = colorControllerObj.GetComponent<ColorControllerUI> ();
 	}
 
-	void Update () {}
-
-	void PlayShootParticles(ParticleSystem shootParticles) {
-		shootParticles.playOnAwake = true;
-		shootParticles.Play ();
+	void PlayShootParticles() {
+		ParticleSystem pSystem;
+		Vector2 spawnPoint;
+		
+		spawnPoint = new Vector2 (bulletSource.transform.position.x, 
+		                          bulletSource.transform.position.y);
+		
+		pSystem = Instantiate (shootParticles[ColorControllerUI.curColorIndex], 
+		                       spawnPoint,
+		                       Quaternion.identity) as ParticleSystem;
+		
+		Destroy (pSystem.gameObject, 2.5f);
 	}
 
 	public void Shoot() {
@@ -28,6 +40,6 @@ public class Shooting : MonoBehaviour {
 		clone.GetComponent<Rigidbody2D> ().velocity = new Vector2 (8f, 0f);
 		Destroy (clone, 3f);
 		
-		PlayShootParticles (shootParticles[ColorControllerUI.curColorIndex]);
+		PlayShootParticles ();
 	}
 }

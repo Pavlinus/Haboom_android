@@ -2,11 +2,11 @@
 using System.Collections;
 
 public class Enemy : MonoBehaviour {
-
+	public ParticleSystem particles;
 	public ColorType.ItemColor color;
 	public int score;
 
-	GameObject gameManager;
+	protected GameObject gameManager;
 
 	void Start() {
 		gameManager = GameObject.FindGameObjectWithTag ("GameManager");
@@ -23,24 +23,42 @@ public class Enemy : MonoBehaviour {
 				IncreaseColorCount ();
 				Destroy (gameObject);
 			}
-		
 		} else if (collider.tag.Equals ("Tube")) {
 			gameManager.GetComponent<GameOverMenu> ().SetComponentsState (true);
+			StartCoroutine (ShowStatisticsScene ());
 			GameManager.isGameOver = true;
-			//Time.timeScale = 0f;
-			StartCoroutine(ShowStatisticsScene());
 		} else if (collider.tag.Equals ("DestroyArea")) {
+			Destroy (gameObject);
+		} else if (collider.tag.Equals ("EnemyKing")) {
+			GameManager.totalScore += score;
+
+			PlayCollisionParticles();
+			IncreaseColorCount ();
 			Destroy (gameObject);
 		}
 	}
 
-	IEnumerator ShowStatisticsScene() {
+	void PlayCollisionParticles() {
+		ParticleSystem pSystem;
+		Vector2 spawnPoint;
+		
+		spawnPoint = new Vector2 (transform.position.x, 
+		                          transform.position.y);
+		
+		pSystem = Instantiate (particles, 
+		                       spawnPoint, 
+		                       Quaternion.identity) as ParticleSystem;
+		
+		Destroy (pSystem.gameObject, 2.5f);
+	}
+
+	protected IEnumerator ShowStatisticsScene() {
 		yield return new WaitForSeconds (2f);
 		Application.LoadLevel (2);
 	}
 
 	// Calculates number of striked qubes
-	void IncreaseColorCount() {
+	protected void IncreaseColorCount() {
 		switch (color) {
 		case ColorType.ItemColor.BLUE:
 			GameManager.blueEnemies++;

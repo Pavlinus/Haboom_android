@@ -4,28 +4,65 @@ using System.Collections;
 public class ItemsSpawn : MonoBehaviour {
 
 	public GameObject[] SpawnPoints;
-	public GameObject[] items;
+	public GameObject[] enemies;
+	public GameObject[] enemiesKing;
+	
+	bool[] enemyKing;
 
-	float spawnFreq = 0.1f;
-	float lastSpawnTime = 0f;
-
-	void Update () {
+	void Start() {
+		enemyKing = new bool[enemies.Length];
 		SpawnItems ();
 	}
 
 	void SpawnItems() {
-		if (lastSpawnTime > spawnFreq) {
-			lastSpawnTime = 0f;
+		for (int i = 0; i < enemies.Length; i++) {
+			StartCoroutine (StartSpawnAt(i));
+		}
 
-			int index = Random.Range (0, SpawnPoints.Length);
+		StartCoroutine (AccessToEnemyKing());
+	}
 
-			GameObject clone = Instantiate (items[index],
+	/// <summary>
+	/// Coroutine for spawning enemies
+	/// </summary>
+	/// <returns>The <see cref="System.Collections.IEnumerator"/>.</returns>
+	/// <param name="index">Index.</param>
+	IEnumerator StartSpawnAt(int index) {
+		while(true) {
+			float timeWait = Random.Range (1.5f, 3.5f);
+			GameObject spawnItem = enemies[index];
+
+			// If enemy king is available to spawn
+			if(enemyKing[index]) {
+				spawnItem = enemiesKing[index];
+			}
+
+			yield return new WaitForSeconds(timeWait);
+
+			GameObject clone = Instantiate (spawnItem,
 			                                SpawnPoints [index].transform.position,
 			                                Quaternion.identity) as GameObject;
-
+			
 			clone.GetComponent<Rigidbody2D>().velocity = new Vector2 (-2f, 0);
-		} else {
-			lastSpawnTime += Time.deltaTime / 7f;
+		}
+	}
+
+	/// <summary>
+	/// Makes `Enemy King` available to spawn
+	/// </summary>
+	/// <returns>The to enemy king.</returns>
+	IEnumerator AccessToEnemyKing() {
+		while (true) {
+			int index = Random.Range(0, enemies.Length);
+			float timeWait = Random.Range(5, 6);
+
+			yield return new WaitForSeconds(timeWait);
+
+			for(int i = 0; i < enemyKing.Length; i++) {
+				enemyKing[i] = false;
+			}
+
+			enemyKing[index] = true;
 		}
 	}
 }

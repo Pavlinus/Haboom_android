@@ -20,6 +20,7 @@ public class HelpMenu : MonoBehaviour {
 		
 		SetComponentsState (true);
 		Time.timeScale = 0f;
+		GameManager.isGameOver = false;
 	}
 
 	void Update() {
