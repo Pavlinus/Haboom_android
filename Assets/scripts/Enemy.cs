@@ -27,11 +27,16 @@ public class Enemy : MonoBehaviour {
 		} else if (collider.tag.Equals ("Tube")) {
 			gameManager.GetComponent<GameOverMenu> ().SetComponentsState (true);
 			GameManager.isGameOver = true;
-			Time.timeScale = 0f;
-		
+			//Time.timeScale = 0f;
+			StartCoroutine(ShowStatisticsScene());
 		} else if (collider.tag.Equals ("DestroyArea")) {
 			Destroy (gameObject);
 		}
+	}
+
+	IEnumerator ShowStatisticsScene() {
+		yield return new WaitForSeconds (2f);
+		Application.LoadLevel (2);
 	}
 
 	// Calculates number of striked qubes

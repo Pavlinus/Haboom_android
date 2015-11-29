@@ -19,8 +19,12 @@ public class GameplayMenuInteraction : MonoBehaviour {
 		Application.LoadLevel (1);
 	}
 
-	public void OnQuitClicked() {
+	public void OnMenuClicked() {
 		Time.timeScale = 1f;
 		Application.LoadLevel (0);
+	}
+
+	public void OnQuitClicked() {
+		Application.Quit ();
 	}
 }

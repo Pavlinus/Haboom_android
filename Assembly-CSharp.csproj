@@ -6,7 +6,7 @@
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
 	<RootNamespace></RootNamespace>
-	<ProjectGuid>{757C0BA7-D88D-1F1E-A2E3-543C517BB559}</ProjectGuid>
+	<ProjectGuid>{28A4B4D1-1F73-FF40-7A75-23A23776CC86}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<AssemblyName>Assembly-CSharp</AssemblyName>
@@ -59,6 +59,7 @@
      <Compile Include="Assets\scripts\MoveControllerUI.cs" />
      <Compile Include="Assets\scripts\ShootControllerUI.cs" />
      <Compile Include="Assets\scripts\Shooting.cs" />
+     <Compile Include="Assets\scripts\StatisticsMenuUI.cs" />
      <Compile Include="Assets\scripts\WeaponMovement.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

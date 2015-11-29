@@ -27,8 +27,8 @@ public class GameOverMenu : MonoBehaviour {
 	}
 
 	public void SetComponentsState(bool state) {
-		restartBtn.GetComponentInChildren<Text> ().enabled = state;
-		quitBtn.GetComponentInChildren<Text> ().enabled = state;
+		//restartBtn.GetComponentInChildren<Text> ().enabled = state;
+		//quitBtn.GetComponentInChildren<Text> ().enabled = state;
 
 		restartBtn.enabled = state;
 		quitBtn.enabled = state;
