@@ -16,17 +16,23 @@ public class EnemyKing : Enemy {
 				isDamaged = true;
 
 				// Icrease collider size to destroy near enemies
-				GetComponent<BoxCollider2D>().size = new Vector2(10, 10);
+				GetComponent<BoxCollider2D>().size = new Vector2(12, 12);
 				GetComponent<SpriteRenderer>().enabled = false;
 
 				Destroy (gameObject, 2f);
 			}
 		} else if (collider.tag.Equals ("Tube")) {
 			if(!isDamaged) {
-				gameManager.GetComponent<GameOverMenu> ().SetComponentsState (true);
+				StartCoroutine(ShowGameOver());
 				StartCoroutine(ShowStatisticsScene());
 				GameManager.isGameOver = true;
 			}
+		} else if (collider.tag.Equals ("DestroyArea")) {
+			Destroy (gameObject);
 		}
+	}
+
+	public bool IsDamaged() {
+		return isDamaged;
 	}
 }

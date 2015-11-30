@@ -13,6 +13,7 @@ public class ColorControllerUI : MonoBehaviour {
 	public Sprite[] shootButtonPressedSprites;
 	public Sprite[] tubeSprites;
 	public Sprite[] playerSprites;
+	public ParticleSystem[] tubeBackParticles;
 	public Color[] textColors;
 
 	public static int curColorIndex = 0;
@@ -21,10 +22,11 @@ public class ColorControllerUI : MonoBehaviour {
 
 	SpriteRenderer playerRenderer;
 	SpriteRenderer tubeRenderer;
+	GameObject tube;
 
 	void Start () {
 		GameObject player = GameObject.FindGameObjectWithTag ("Player");
-		GameObject tube = GameObject.FindGameObjectWithTag ("Tube");
+		tube = GameObject.FindGameObjectWithTag ("Tube");
 		
 		playerRenderer = player.GetComponent<SpriteRenderer> ();
 		tubeRenderer = tube.GetComponent<SpriteRenderer> ();
@@ -72,6 +74,15 @@ public class ColorControllerUI : MonoBehaviour {
 		tubeRenderer.sprite = tubeSprites[curColorIndex];
 		frameImage.GetComponent<Image> ().sprite = frameSprites [curColorIndex];
 		GetComponent<Text> ().color = textColors [curColorIndex];
+
+		// Destroy `Tube` background particles
+		GameObject tParticles = GameObject.FindGameObjectWithTag ("TubeParticles");
+		Destroy (tParticles);
+
+		// Instantiate next `Tube` particles
+		Instantiate (tubeBackParticles [curColorIndex],
+		            tube.transform.position,
+		            Quaternion.Euler(0, 0, 90));
 	}
 	
 	/**

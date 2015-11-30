@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour {
 				Destroy (gameObject);
 			}
 		} else if (collider.tag.Equals ("Tube")) {
-			gameManager.GetComponent<GameOverMenu> ().SetComponentsState (true);
+			StartCoroutine(ShowGameOver());
 			StartCoroutine (ShowStatisticsScene ());
 			GameManager.isGameOver = true;
 		} else if (collider.tag.Equals ("DestroyArea")) {
@@ -52,8 +52,13 @@ public class Enemy : MonoBehaviour {
 		Destroy (pSystem.gameObject, 2.5f);
 	}
 
+	protected IEnumerator ShowGameOver() {
+		yield return new WaitForSeconds (0.8f);
+		gameManager.GetComponent<GameOverMenu> ().SetComponentsState (true);
+	}
+
 	protected IEnumerator ShowStatisticsScene() {
-		yield return new WaitForSeconds (2f);
+		yield return new WaitForSeconds (6f);
 		Application.LoadLevel (2);
 	}
 

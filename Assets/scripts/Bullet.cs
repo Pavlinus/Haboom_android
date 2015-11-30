@@ -10,6 +10,13 @@ public class Bullet : MonoBehaviour {
 		if (collider.tag.Equals ("Enemy") || 
 		    collider.tag.Equals ("EnemyKing")) {
 
+			// Ignore `EnemyKing` if it was shooted (damaged)
+			if(collider.tag.Equals ("EnemyKing") && 
+			   collider.gameObject.GetComponent<EnemyKing>().IsDamaged()) {
+
+				return;
+			}
+
 			gameObject.GetComponent<SpriteRenderer> ().enabled = false;
 			gameObject.GetComponent<CircleCollider2D> ().enabled = false;
 
