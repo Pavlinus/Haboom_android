@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
-	void PlayCollisionParticles() {
+	protected void PlayCollisionParticles() {
 		ParticleSystem pSystem;
 		Vector2 spawnPoint;
 		

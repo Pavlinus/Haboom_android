@@ -8,26 +8,23 @@ public class HelpMenu : MonoBehaviour {
 	public Text subject;
 	public Text lmbDescriptionText;
 	public Text rmbDescriptionText;
-	
-	GameObject player;
-	GameObject bulletSource;
+	public Text movementDescriptionText;
 
+	GameObject gameManager;
 	bool inHelp;
 	
 	void Start () {
-		player = GameObject.FindGameObjectWithTag("Player");
-		bulletSource = GameObject.FindGameObjectWithTag("BulletSource");
-		
+		gameManager = GameObject.FindGameObjectWithTag ("GameManager");
+
 		SetComponentsState (true);
-		Time.timeScale = 0f;
 		GameManager.isGameOver = false;
 	}
 
 	void Update() {
 		if (Input.GetMouseButtonDown (0)) {
 			SetComponentsState(false);
-			Time.timeScale = 1f;
 
+			// Disable help menu script
 			enabled = false;
 		}
 	}
@@ -37,9 +34,11 @@ public class HelpMenu : MonoBehaviour {
 		subject.enabled = state;
 		lmbDescriptionText.enabled = state;
 		rmbDescriptionText.enabled = state;
+		movementDescriptionText.enabled = state;
 
-		player.GetComponent<WeaponMovement> ().enabled = !state;
-		bulletSource.GetComponent<Shooting> ().enabled = !state;
+		// Deactivate movement and shooting scripts
+		gameManager.GetComponent<GameManager> ()
+			.SetScriptsActiveState (!state);
 
 		inHelp = state;
 	}

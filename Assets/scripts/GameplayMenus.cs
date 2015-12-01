@@ -12,18 +12,13 @@ public class GameplayMenus : MonoBehaviour {
 
 	GameObject player;
 	GameObject bulletSource;
+	GameObject gameManager;
 
-	bool inPause;
-	
 	void Start () {
-		player = GameObject.FindGameObjectWithTag("Player");
-		bulletSource = GameObject.FindGameObjectWithTag("BulletSource");
+		gameManager = GameObject.FindGameObjectWithTag("GameManager");
 
-		inPause = false;
+		GameManager.inPause = false;
 		SetComponentsState (false);
-
-		player.GetComponent<WeaponMovement> ().enabled = false;
-		bulletSource.GetComponent<Shooting> ().enabled = false;
 	}
 
 	void Update () {
@@ -31,13 +26,15 @@ public class GameplayMenus : MonoBehaviour {
 		    !GetComponent<HelpMenu>().HelpMenuIsActive() &&
 		    !GetComponent<GameOverMenu>().GameOverMenuIsActive()) {
 
-			if(!inPause) {
-				Time.timeScale = 0f;
+			if(!GameManager.inPause) {
+				gameManager.GetComponent<GameManager>()
+					.SetScriptsActiveState(false);
 			} else {
-				Time.timeScale = 1f;
+				gameManager.GetComponent<GameManager>()
+					.SetScriptsActiveState(true);
 			}
 
-			SetComponentsState(!inPause);
+			SetComponentsState(!GameManager.inPause);
 		}
 	}
 
@@ -47,8 +44,11 @@ public class GameplayMenus : MonoBehaviour {
 		quitBtn.GetComponentInChildren<Text> ().enabled = state;
 
 		resumeBtn.enabled = state;
+		resumeBtn.GetComponent<Image> ().enabled = state;
 		restartBtn.enabled = state;
+		restartBtn.GetComponent<Image> ().enabled = state;
 		quitBtn.enabled = state;
+		quitBtn.GetComponent<Image> ().enabled = state;
 		background.enabled = state;
 
 		pauseHeader.GetComponent<Text> ().enabled = state;
@@ -57,9 +57,6 @@ public class GameplayMenus : MonoBehaviour {
 			image.enabled = state;
 		}
 
-		player.GetComponent<WeaponMovement> ().enabled = !state;
-		bulletSource.GetComponent<Shooting> ().enabled = !state;
-
-		inPause = state;
+		GameManager.inPause = state;
 	}
 }

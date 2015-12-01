@@ -29,7 +29,7 @@ public class ItemsSpawn : MonoBehaviour {
 	/// <param name="index">Index.</param>
 	IEnumerator StartSpawnAt(int index) {
 		while(true) {
-			float timeWait = Random.Range (1.5f, 3.5f);
+			float timeWait = Random.Range (1.5f, 3f);
 			GameObject spawnItem = enemies[index];
 
 			// If enemy king is available to spawn
@@ -39,11 +39,11 @@ public class ItemsSpawn : MonoBehaviour {
 
 			yield return new WaitForSeconds(timeWait);
 
-			GameObject clone = Instantiate (spawnItem,
-			                                SpawnPoints [index].transform.position,
-			                                Quaternion.identity) as GameObject;
-			
-			clone.GetComponent<Rigidbody2D>().velocity = new Vector2 (-2f, 0);
+			// If game process is running
+			if(!GameManager.inPause && !GameManager.isGameOver) {
+				Instantiate (spawnItem, SpawnPoints [index].transform.position,
+				             Quaternion.identity);
+			}
 		}
 	}
 
@@ -54,7 +54,12 @@ public class ItemsSpawn : MonoBehaviour {
 	IEnumerator AccessToEnemyKing() {
 		while (true) {
 			int index = Random.Range(0, enemies.Length);
-			float timeWait = Random.Range(5, 6);
+			float timeWait = Random.Range(10, 15);
+
+			// If game process is running
+			if(!GameManager.inPause && !GameManager.isGameOver) {
+				continue;
+			}
 
 			yield return new WaitForSeconds(timeWait);
 

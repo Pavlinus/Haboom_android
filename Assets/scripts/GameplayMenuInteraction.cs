@@ -1,30 +1,41 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GameplayMenuInteraction : MonoBehaviour {
 
 	GameObject gameManager;
+	GameObject splashScreen;
+	SplashScreen sScreen;
 
 	void Start() {
 		gameManager = GameObject.FindGameObjectWithTag ("GameManager");
+		splashScreen = GameObject.FindGameObjectWithTag ("SplashScreen");
+
+		sScreen = splashScreen.GetComponent<SplashScreen> ();
 	}
 
 	public void OnResumeClicked() {
-		gameManager.GetComponent<GameplayMenus> ().SetComponentsState(false);
 		Time.timeScale = 1f;
+		gameManager.GetComponent<GameplayMenus> ().SetComponentsState(false);
 	}
 
 	public void OnRestartClicked() {
-		Time.timeScale = 1f;
-		Application.LoadLevel (1);
+		sScreen.SetParameter ("splashIn");
+		StartCoroutine(LoadLevel (1));
 	}
 
 	public void OnMenuClicked() {
-		Time.timeScale = 1f;
-		Application.LoadLevel (0);
+		LoadLevel (0);
 	}
 
 	public void OnQuitClicked() {
 		Application.Quit ();
+	}
+
+	IEnumerator LoadLevel(int scene) {
+		Time.timeScale = 1f;
+		yield return new WaitForSeconds(2.5f);
+		Application.LoadLevel (scene);
 	}
 }

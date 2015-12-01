@@ -1,11 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Bullet.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\ItemsSpawn.cs">
     <Files>
-      <File FileName="Assets\scripts\ColorControllerUI.cs" Line="78" Column="41" />
-      <File FileName="Assets\scripts\Tube.cs" Line="26" Column="13" />
-      <File FileName="Assets\scripts\Enemy.cs" Line="56" Column="39" />
-      <File FileName="Assets\scripts\Bullet.cs" Line="17" Column="12" />
+      <File FileName="Assets\scripts\GameplayMenuInteraction.cs" Line="29" Column="17" />
+      <File FileName="Assets\scripts\GameManager.cs" Line="11" Column="37" />
+      <File FileName="Assets\scripts\StatisticsMenuUI.cs" Line="9" Column="23" />
+      <File FileName="Assets\scripts\ItemsSpawn.cs" Line="59" Column="33" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

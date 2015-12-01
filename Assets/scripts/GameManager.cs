@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
 	public static int greenEnemies = 0;
 	public static int orangeEnemies = 0;
 	public static bool isGameOver = false;
+	public static bool inPause = false; 
 
 	void Start() {
 		Input.multiTouchEnabled = true;
@@ -20,5 +21,14 @@ public class GameManager : MonoBehaviour {
 		blueEnemies = 0;
 		greenEnemies = 0;
 		orangeEnemies = 0;
+	}
+
+	public void SetScriptsActiveState (bool state) {
+		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		GameObject bulletSource = GameObject.FindGameObjectWithTag("BulletSource");
+
+		player.GetComponent<WeaponMovement> ().enabled = state;
+		bulletSource.GetComponent<Shooting> ().enabled = state;
+		GetComponent<ItemsSpawn> ().enabled = state;
 	}
 }

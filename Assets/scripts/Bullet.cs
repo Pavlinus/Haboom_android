@@ -6,22 +6,9 @@ public class Bullet : MonoBehaviour {
 	public ColorType.ItemColor color;
 	public ParticleSystem particles;
 
-	void OnTriggerEnter2D(Collider2D collider) {
-		if (collider.tag.Equals ("Enemy") || 
-		    collider.tag.Equals ("EnemyKing")) {
-
-			// Ignore `EnemyKing` if it was shooted (damaged)
-			if(collider.tag.Equals ("EnemyKing") && 
-			   collider.gameObject.GetComponent<EnemyKing>().IsDamaged()) {
-
-				return;
-			}
-
-			gameObject.GetComponent<SpriteRenderer> ().enabled = false;
-			gameObject.GetComponent<CircleCollider2D> ().enabled = false;
-
-			PlayCollisionParticles();
-		}
+	public void DisableObject() {
+		gameObject.GetComponent<SpriteRenderer> ().enabled = false;
+		gameObject.GetComponent<CircleCollider2D> ().enabled = false;
 	}
 
 	void PlayCollisionParticles() {

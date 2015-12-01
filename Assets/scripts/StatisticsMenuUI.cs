@@ -9,6 +9,7 @@ public class StatisticsMenuUI : MonoBehaviour {
 	public Text blueText;
 	public Text orangeText;
 	public Text scoreText;
+	public GameObject[] containers;
 
 	void Start () {
 		redText.text = GameManager.redEnemies.ToString();
@@ -16,5 +17,14 @@ public class StatisticsMenuUI : MonoBehaviour {
 		blueText.text = GameManager.blueEnemies.ToString();
 		orangeText.text = GameManager.orangeEnemies.ToString();
 		scoreText.text = "SCORE " + GameManager.totalScore;
+
+		StartCoroutine (StartAnim());
+	}
+
+	IEnumerator StartAnim() {
+		foreach(GameObject container in containers) {
+			yield return new WaitForSeconds(0.3f);
+			container.GetComponent<Animator>().SetTrigger("scaleContainer");
+		}
 	}
 }
