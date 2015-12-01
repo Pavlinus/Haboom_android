@@ -19,13 +19,13 @@ public class EnemyKing : Enemy {
 				GetComponent<BoxCollider2D>().size = new Vector2(12, 12);
 				GetComponent<SpriteRenderer>().enabled = false;
 
-				// Deactivate bullet object
-				collider.gameObject.GetComponent<Bullet>().DisableObject();
-
-				PlayCollisionParticles();
-
 				Destroy (gameObject, 2f);
 			}
+
+			// Deactivate bullet object
+			collider.gameObject.GetComponent<Bullet>().DisableObject();
+
+			PlayCollisionParticles();
 		} else if (collider.tag.Equals ("Tube")) {
 			if(!isDamaged) {
 				StartCoroutine(ShowGameOver());

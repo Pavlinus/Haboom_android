@@ -9,13 +9,8 @@ public class HelpMenu : MonoBehaviour {
 	public Text lmbDescriptionText;
 	public Text rmbDescriptionText;
 	public Text movementDescriptionText;
-
-	GameObject gameManager;
-	bool inHelp;
 	
 	void Start () {
-		gameManager = GameObject.FindGameObjectWithTag ("GameManager");
-
 		SetComponentsState (true);
 		GameManager.isGameOver = false;
 	}
@@ -36,14 +31,6 @@ public class HelpMenu : MonoBehaviour {
 		rmbDescriptionText.enabled = state;
 		movementDescriptionText.enabled = state;
 
-		// Deactivate movement and shooting scripts
-		gameManager.GetComponent<GameManager> ()
-			.SetScriptsActiveState (!state);
-
-		inHelp = state;
-	}
-
-	public bool HelpMenuIsActive() {
-		return inHelp;
+		GameManager.inHelpMenu = state;
 	}
 }

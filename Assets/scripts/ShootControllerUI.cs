@@ -23,12 +23,14 @@ public class ShootControllerUI : MonoBehaviour {
 
 		rectCorners = new Vector3[4];
 		shootingImg.GetComponent<RectTransform> ().GetWorldCorners (rectCorners);
-
-		GetComponent<ShootControllerUI> ().enabled = true;
 	}
 
 	void Update () {
 		Touch[] touches = Input.touches;
+
+		if(GameManager.inPause || GameManager.inHelpMenu) {
+			return;
+		}
 
 		for (int i = 0; i < touches.Length; i++) {
 			Vector2 touchPos = touches[i].position;
@@ -43,10 +45,6 @@ public class ShootControllerUI : MonoBehaviour {
 						shootButtonSprites[ColorControllerUI.curColorIndex];
 				}
 			}
-		}
-
-		if (GameManager.isGameOver) {
-			GetComponent<ShootControllerUI>().enabled = false;
 		}
 	}
 

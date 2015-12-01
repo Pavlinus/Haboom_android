@@ -34,13 +34,15 @@ public class ColorControllerUI : MonoBehaviour {
 		rectCorners = new Vector3[4];
 		frameImage.GetComponent<RectTransform> ().GetWorldCorners (rectCorners);
 
-		GetComponent<ColorControllerUI> ().enabled = true;
-
 		curColorIndex = 0;
 	}
 	
 	void Update () {
 		Touch[] touches = Input.touches;
+
+		if(GameManager.inPause || GameManager.inHelpMenu) {
+			return;
+		}
 		
 		for (int i = 0; i < touches.Length; i++) {
 			Vector2 touchPos = touches[i].position;
@@ -52,10 +54,6 @@ public class ColorControllerUI : MonoBehaviour {
 					SetActualColorReleased ();
 				}
 			}
-		}
-
-		if (GameManager.isGameOver) {
-			GetComponent<ColorControllerUI>().enabled = false;
 		}
 	}
 

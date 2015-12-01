@@ -1,9 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\ItemsSpawn.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Tube.cs">
     <Files>
-      <File FileName="Assets\scripts\ItemsSpawn.cs" Line="50" Column="30" />
-      <File FileName="Assets\scripts\GameplayMenuInteraction.cs" Line="24" Column="37" />
+      <File FileName="Assets\scripts\GameplayMenus.cs" Line="19" Column="30" />
+      <File FileName="Assets\scripts\GameManager.cs" Line="12" Column="31" />
+      <File FileName="Assets\scripts\ShootControllerUI.cs" Line="33" Column="4" />
+      <File FileName="Assets\scripts\Tube.cs" Line="16" Column="47" />
+      <File FileName="Assets\scripts\GameOverMenu.cs" Line="27" Column="28" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

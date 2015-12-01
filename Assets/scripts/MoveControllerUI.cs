@@ -23,6 +23,10 @@ public class MoveControllerUI : MonoBehaviour {
 
 	void Update () {
 		Touch[] touches = Input.touches;
+
+		if(GameManager.inPause || GameManager.inHelpMenu) {
+			return;
+		}
 		
 		for (int i = 0; i < touches.Length; i++) {
 			Vector2 touchPos = touches[i].position;

@@ -10,29 +10,14 @@ public class GameplayMenus : MonoBehaviour {
 	public Image background;
 	public Graphic pauseHeader;
 
-	GameObject player;
-	GameObject bulletSource;
-	GameObject gameManager;
-
 	void Start () {
-		gameManager = GameObject.FindGameObjectWithTag("GameManager");
-
-		GameManager.inPause = false;
 		SetComponentsState (false);
 	}
 
 	void Update () {
 		if (Input.GetButtonDown ("Escape") && 
-		    !GetComponent<HelpMenu>().HelpMenuIsActive() &&
-		    !GetComponent<GameOverMenu>().GameOverMenuIsActive()) {
-
-			if(!GameManager.inPause) {
-				gameManager.GetComponent<GameManager>()
-					.SetScriptsActiveState(false);
-			} else {
-				gameManager.GetComponent<GameManager>()
-					.SetScriptsActiveState(true);
-			}
+		    !GameManager.inHelpMenu &&
+		    !GameManager.isGameOver) {
 
 			SetComponentsState(!GameManager.inPause);
 		}
@@ -56,7 +41,7 @@ public class GameplayMenus : MonoBehaviour {
 		foreach (Image image in pauseHeader.GetComponentsInChildren<Image>()) {
 			image.enabled = state;
 		}
-
+		
 		GameManager.inPause = state;
 	}
 }

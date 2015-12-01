@@ -53,7 +53,7 @@ public class ItemsSpawn : MonoBehaviour {
 			yield return new WaitForSeconds(timeWait);
 
 			// If game process is running
-			if(!GameManager.inPause && !GameManager.isGameOver) {
+			if(!GameManager.inPause && !GameManager.isGameOver && !GameManager.inHelpMenu) {
 				Instantiate (spawnItem, SpawnPoints [index].transform.position,
 				             Quaternion.identity);
 				spawned += 1;

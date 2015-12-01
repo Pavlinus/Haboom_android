@@ -22,12 +22,15 @@ public class Enemy : MonoBehaviour {
 
 				// Deactivate bullet object
 				collider.gameObject.GetComponent<Bullet>().DisableObject();
-				
-				PlayCollisionParticles();
 
 				IncreaseColorCount ();
 				Destroy (gameObject);
 			}
+
+			// Deactivate bullet object
+			collider.gameObject.GetComponent<Bullet>().DisableObject();
+			
+			PlayCollisionParticles();
 		} else if (collider.tag.Equals ("Tube")) {
 			StartCoroutine(ShowGameOver());
 			StartCoroutine (ShowStatisticsScene ());

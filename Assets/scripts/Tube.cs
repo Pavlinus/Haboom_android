@@ -8,11 +8,9 @@ public class Tube : MonoBehaviour {
 	public ParticleSystem[] particleCollision;
 
 	GameObject player;
-	GameObject bulletSource;
 
 	void Start() {
 		player = GameObject.FindGameObjectWithTag("Player");
-		bulletSource = GameObject.FindGameObjectWithTag("BulletSource");
 	}
 
 	void OnTriggerEnter2D (Collider2D collider) {
@@ -41,7 +39,6 @@ public class Tube : MonoBehaviour {
 			                                              collider.transform.position.y);
 
 			GetComponent<BoxCollider2D>().enabled = false;
-			DeactivateScripts();
 
 			ParticleSystem particles;
 			particles = Instantiate(particleCollision[ColorControllerUI.curColorIndex],
@@ -49,10 +46,5 @@ public class Tube : MonoBehaviour {
 			                        Quaternion.identity) as ParticleSystem;
 			Destroy(particles.gameObject, 3f);
 		}
-	}
-
-	void DeactivateScripts() {
-		player.GetComponent<WeaponMovement> ().enabled = false;
-		bulletSource.GetComponent<Shooting> ().enabled = false;
 	}
 }

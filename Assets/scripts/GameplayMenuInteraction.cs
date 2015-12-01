@@ -16,8 +16,11 @@ public class GameplayMenuInteraction : MonoBehaviour {
 	}
 
 	public void OnResumeClicked() {
-		Time.timeScale = 1f;
 		gameManager.GetComponent<GameplayMenus> ().SetComponentsState(false);
+	}
+
+	public void OnSoundClicked() {
+		GetComponent<Sound> ().MuteSoundState (!GameManager.soundOn);
 	}
 
 	public void OnRestartClicked() {
@@ -26,6 +29,7 @@ public class GameplayMenuInteraction : MonoBehaviour {
 	}
 
 	public void OnMenuClicked() {
+		GameManager.inPause = false;
 		Application.LoadLevel (0);
 	}
 
@@ -34,7 +38,6 @@ public class GameplayMenuInteraction : MonoBehaviour {
 	}
 
 	IEnumerator LoadLevel(int scene) {
-		Time.timeScale = 1f;
 		yield return new WaitForSeconds(2.5f);
 		Application.LoadLevel (scene);
 	}
