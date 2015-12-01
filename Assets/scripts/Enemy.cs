@@ -20,6 +20,11 @@ public class Enemy : MonoBehaviour {
 			if (bullet.GetItemColor ().Equals (color)) {
 				GameManager.totalScore += score;
 
+				// Deactivate bullet object
+				collider.gameObject.GetComponent<Bullet>().DisableObject();
+				
+				PlayCollisionParticles();
+
 				IncreaseColorCount ();
 				Destroy (gameObject);
 			}

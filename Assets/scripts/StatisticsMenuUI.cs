@@ -19,6 +19,8 @@ public class StatisticsMenuUI : MonoBehaviour {
 		scoreText.text = "SCORE " + GameManager.totalScore;
 
 		StartCoroutine (StartAnim());
+		GameManager.isGameOver = false;
+		GameManager.inPause = false;
 	}
 
 	IEnumerator StartAnim() {

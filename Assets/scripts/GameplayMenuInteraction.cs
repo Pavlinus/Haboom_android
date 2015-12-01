@@ -26,7 +26,7 @@ public class GameplayMenuInteraction : MonoBehaviour {
 	}
 
 	public void OnMenuClicked() {
-		LoadLevel (0);
+		Application.LoadLevel (0);
 	}
 
 	public void OnQuitClicked() {
