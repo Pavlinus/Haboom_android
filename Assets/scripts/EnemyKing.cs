@@ -7,7 +7,7 @@ public class EnemyKing : Enemy {
 	void OnTriggerEnter2D(Collider2D collider) {
 		if (collider.tag.Equals ("Bullet") && !isDamaged) {
 			Bullet bullet = collider.gameObject.GetComponent<Bullet> ();
-			
+
 			// If enemy striked by same color bullet
 			if (bullet.GetItemColor ().Equals (color)) {
 				GameManager.totalScore += score;
@@ -26,6 +26,7 @@ public class EnemyKing : Enemy {
 			collider.gameObject.GetComponent<Bullet>().DisableObject();
 
 			PlayCollisionParticles();
+			GetComponent<AudioSource>().Play();
 		} else if (collider.tag.Equals ("Tube")) {
 			if(!isDamaged) {
 				StartCoroutine(ShowGameOver());

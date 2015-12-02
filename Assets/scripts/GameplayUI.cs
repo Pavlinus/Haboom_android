@@ -26,6 +26,7 @@ public class GameplayUI : MonoBehaviour {
 		GameObject splashScreen = GameObject.FindGameObjectWithTag ("SplashScreen");
 		SplashScreen sScreen = splashScreen.GetComponent<SplashScreen> ();
 
+		sScreen.GetComponent<Image> ().enabled = true;
 		sScreen.SetParameter ("splashOut");
 	}
 }

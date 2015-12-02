@@ -27,6 +27,7 @@ public class StatisticsMenuUI : MonoBehaviour {
 		foreach(GameObject container in containers) {
 			yield return new WaitForSeconds(0.3f);
 			container.GetComponent<Animator>().SetTrigger("scaleContainer");
+			GetComponent<AudioSource>().Play();
 		}
 	}
 }

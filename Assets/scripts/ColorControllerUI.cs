@@ -50,6 +50,7 @@ public class ColorControllerUI : MonoBehaviour {
 			if(InShootBtnArea(touchPos)) {
 				if (touches[i].phase == TouchPhase.Began) {
 					SetActualColorPressed();
+					GetComponent<AudioSource>().Play();
 				} else if (touches[i].phase == TouchPhase.Ended) {
 					SetActualColorReleased ();
 				}

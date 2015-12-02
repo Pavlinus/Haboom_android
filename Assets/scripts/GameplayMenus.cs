@@ -10,7 +10,10 @@ public class GameplayMenus : MonoBehaviour {
 	public Image background;
 	public Graphic pauseHeader;
 
+	GameObject gameManager;
+
 	void Start () {
+		gameManager = GameObject.FindGameObjectWithTag ("GameManager");
 		SetComponentsState (false);
 	}
 
@@ -43,5 +46,11 @@ public class GameplayMenus : MonoBehaviour {
 		}
 		
 		GameManager.inPause = state;
+
+		if (!GameManager.inPause) {
+			gameManager.GetComponent<AudioSource> ().Play ();
+		} else {
+			gameManager.GetComponent<AudioSource> ().Pause();
+		}
 	}
 }

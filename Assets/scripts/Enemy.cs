@@ -24,13 +24,19 @@ public class Enemy : MonoBehaviour {
 				collider.gameObject.GetComponent<Bullet>().DisableObject();
 
 				IncreaseColorCount ();
-				Destroy (gameObject);
+
+				// Hide damaged enemy
+				GetComponent<BoxCollider2D>().enabled = false;
+				GetComponent<SpriteRenderer>().enabled = false;
+
+				Destroy (gameObject, 2f);
 			}
 
 			// Deactivate bullet object
 			collider.gameObject.GetComponent<Bullet>().DisableObject();
 			
 			PlayCollisionParticles();
+			GetComponent<AudioSource>().Play();
 		} else if (collider.tag.Equals ("Tube")) {
 			StartCoroutine(ShowGameOver());
 			StartCoroutine (ShowStatisticsScene ());

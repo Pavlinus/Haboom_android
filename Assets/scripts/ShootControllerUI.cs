@@ -40,6 +40,7 @@ public class ShootControllerUI : MonoBehaviour {
 					shooting.Shoot();
 					shootingImg.sprite = colorController.
 						shootButtonPressedSprites[ColorControllerUI.curColorIndex];
+					GetComponent<AudioSource>().Play();
 				} else if (touches[i].phase == TouchPhase.Ended) {
 					shootingImg.sprite = colorController.
 						shootButtonSprites[ColorControllerUI.curColorIndex];

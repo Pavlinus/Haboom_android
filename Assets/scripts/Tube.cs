@@ -8,9 +8,11 @@ public class Tube : MonoBehaviour {
 	public ParticleSystem[] particleCollision;
 
 	GameObject player;
+	GameObject gameManager;
 
 	void Start() {
 		player = GameObject.FindGameObjectWithTag("Player");
+		gameManager = GameObject.FindGameObjectWithTag("GameManager");
 	}
 
 	void OnTriggerEnter2D (Collider2D collider) {
@@ -45,6 +47,10 @@ public class Tube : MonoBehaviour {
 			                        collisionParticlesSpawn,
 			                        Quaternion.identity) as ParticleSystem;
 			Destroy(particles.gameObject, 3f);
+
+			GetComponent<AudioSource>().Play();
+
+			gameManager.GetComponent<AudioSource>().Stop();
 		}
 	}
 }

@@ -20,7 +20,7 @@ public class SplashScreen : MonoBehaviour {
 			break;
 
 		case "splashOut":
-			animator.SetTrigger ("splashOut");
+			GetComponent<Animator> ().SetTrigger ("splashOut");
 			break;
 		}
 	}
